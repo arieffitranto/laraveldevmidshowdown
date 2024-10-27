@@ -1,64 +1,90 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Laravel Developer Showdown - Arief Fitranto
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This repository contains the solution for the Laravel Developer Showdown coding challenge.
 
-## About Laravel
+## Instructions
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The full instructions for the challenge can be found here:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+[https://invented-egret-e3d.notion.site/Laravel-Developer-Showdown-ARIEFFITRANTO-12c83dead18b80fea814e497e04b83a4](https://invented-egret-e3d.notion.site/Laravel-Developer-Showdown-ARIEFFITRANTO-12c83dead18b80fea814e497e04b83a4)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Setup and Preparation
 
-## Learning Laravel
+The following steps were taken to set up the project:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1.  **Create a new Laravel project:**
+    ```bash
+    laravel new user-update-test
+    cd user-update-test
+    ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2.  **Initialize a Git repository:**
+    ```bash
+    git init
+    ```
 
-## Laravel Sponsors
+3.  **Add `timezone` field to the `users` table:**
+    *   Create a migration:
+        ```bash
+        php artisan make:migration add_timezone_to_users_table --table=users
+        ```
+    *   In the migration file, add the `timezone` column:
+        ```php
+        public function up()
+        {
+            Schema::table('users', function (Blueprint $table) {
+                $table->string('timezone')->nullable(); 
+            });
+        }
+        ```
+    *   Run the migration:
+        ```bash
+        php artisan migrate
+        ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+4.  **Seed the database:**
+    *   Update the `DatabaseSeeder` to create 20 users with random timezones:
+        ```php
+        use App\Models\User;
 
-### Premium Partners
+        public function run()
+        {
+            User::factory(20)->create()->each(function ($user) {
+                $timezones = ['CET', 'CST', 'GMT+1'];
+                $user->timezone = $timezones[array_rand($timezones)];
+                $user->save();
+            });
+        }
+        ```
+    *   Run the seeder:
+        ```bash
+        php artisan db:seed
+        ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+5.  **Create an artisan command to update user attributes:**
+    *   Generate the command:
+        ```bash
+        php artisan make:command UpdateUserAttributes
+        ```
+    *   In the command file, implement the logic to update user attributes with random values:
+        ```php
+        // ... (code to update firstname, lastname, and timezone)
+        ```
 
-## Contributing
+## User Update Service
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**(Include the User Update Service documentation from the previous response here)**
 
-## Code of Conduct
+## Other details
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+*   **Branch:** The main feature is developed on the `feature/user-updates` branch.
+*   **API Documentation:** The API documentation provided in the instructions is included in the `readme.md` file for reference.
 
-## Security Vulnerabilities
+## How to run
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1.  Clone the repository: `git clone [your-repository-url]`
+2.  Install dependencies: `composer install`
+3.  Run the command to update user attributes: `php artisan update-user-attributes`
+4.  Check the `storage/logs/userupdates.log` file for the output.
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Note:**  Remember to replace placeholders like `[your-repository-url]` and `[your-api-endpoint]` with your actual values.

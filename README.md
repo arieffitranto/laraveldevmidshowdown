@@ -105,6 +105,8 @@ The `UserUpdateService` is triggered by the `UserObserver` whenever a user's `fi
 *   **Static Response:**
     *   Set `USE_STATIC_API_RESPONSE=true` in your `.env` file to use the static response for testing.
     *   Set `USE_STATIC_API_RESPONSE=false` in your `.env` file to use the actual API endpoint.
+*   **Set API:**
+    *   Set `API_ENDPOINT` in your `.env` file to set API endpoint for testing.
 
 ### Dependencies
 

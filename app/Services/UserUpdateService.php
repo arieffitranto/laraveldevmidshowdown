@@ -55,7 +55,7 @@ class UserUpdateService
             $guzzleResponse = $response->wait(); // Get the underlying response object
         } else {
             // Make the actual API call
-            $guzzleResponse = Http::post('https://api.endpoint.com', [
+            $guzzleResponse = Http::post(config('app.api_endpoint'), [
                 'json' => $payload,
             ]);
         }

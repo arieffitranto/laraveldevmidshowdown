@@ -124,7 +124,7 @@ return [
     'cipher' => 'AES-256-CBC',
 
     'use_static_api_response' => env('USE_STATIC_API_RESPONSE', false),
-
+    'api_endpoint' => env('API_ENDPOINT', 'http://localhost'),
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

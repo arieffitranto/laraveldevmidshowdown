@@ -97,6 +97,11 @@ The `UserUpdateService` is triggered by the `UserObserver` whenever a user's `fi
     ```php
     $userUpdateService->updateUsers([$user1, $user2, ...]);
     ```
+3.  Or just run UpdateUserAttributes on Php Artisan:
+
+    ```php
+    php artisan user:update-user-attributes
+    ```
 
 ### Configuration
 

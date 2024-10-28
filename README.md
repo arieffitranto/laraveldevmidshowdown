@@ -136,5 +136,3 @@ The `UserUpdateService` is triggered by the `UserObserver` whenever a user's `fi
 2.  Install dependencies: `composer install`
 3.  Run the command to update user attributes: `php artisan update-user-attributes`
 4.  Check the `storage/logs/userupdates.log` file for the output.
-
-**Note:** Remember to replace placeholders like `[your-repository-url]` and `[your-api-endpoint]` with your actual values.

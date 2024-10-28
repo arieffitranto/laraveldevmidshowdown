@@ -43,7 +43,7 @@ class UserUpdateService
         ];
 
         // Switch between static response and API response
-        if (!config('app.use_static_api_response')) { // Check the config setting
+        if (config('app.use_static_api_response')) { // Check the config setting
             $response = Http::response([
                 'success' => true,
                 'message' => 'Users updated successfully (simulated)',

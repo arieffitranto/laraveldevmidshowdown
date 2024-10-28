@@ -132,7 +132,7 @@ The `UserUpdateService` is triggered by the `UserObserver` whenever a user's `fi
 
 ## How to run
 
-1.  Clone the repository: `git clone [your-repository-url]`
+1.  Clone the repository: `git clone https://github.com/arieffitranto/laraveldevmidshowdown.git`
 2.  Install dependencies: `composer install`
 3.  Run the command to update user attributes: `php artisan user:update-user-attributes`
 4.  Check the `storage/logs/userupdates.log` file for the output.

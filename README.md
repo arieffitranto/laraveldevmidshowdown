@@ -134,5 +134,5 @@ The `UserUpdateService` is triggered by the `UserObserver` whenever a user's `fi
 
 1.  Clone the repository: `git clone [your-repository-url]`
 2.  Install dependencies: `composer install`
-3.  Run the command to update user attributes: `php artisan update-user-attributes`
+3.  Run the command to update user attributes: `php artisan user:update-user-attributes`
 4.  Check the `storage/logs/userupdates.log` file for the output.
